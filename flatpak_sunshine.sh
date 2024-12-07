@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Ensure Flathub is added as a Flatpak remote repository
-if ! flatpak remotes | grep -q "flathub"; then
-    echo "Adding Flathub repository..."
-    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-fi
+#if ! flatpak remotes | grep -q "flathub"; then
+#    echo "Adding Flathub repository..."
+#    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+#fi
 
 # Install Sunshine via Flatpak if not already installed
 if ! flatpak list | grep -q "dev.lizardbyte.app.Sunshine"; then
@@ -22,8 +22,9 @@ else
     sed -i 's/system.sunshine.enabled=.*/system.sunshine.enabled=1/' /userdata/system/batocera.conf
 fi
 
-# Ensure logs directory exists
+# Ensure logs and service directories exists
 mkdir -p /userdata/system/logs
+mkdir -p /userdata/system/services
 
 # Create Sunshine service script in /userdata/system/services
 echo "Creating Sunshine service script..."
