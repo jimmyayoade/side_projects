@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #create network variable
-NET_LOCAl=$(ip r | awk '/proto/ {print $1}')
+#NET_LOCAl=$(ip r | awk '/proto/ {print $1}')
 
 export $(cat /proc/1/environ | tr '\0' '\n')
 
@@ -64,7 +64,7 @@ sysctl -p "$sysctl_config"
 /userdata/tailscale/tailscaled -state /userdata/tailscale/state > /userdata/tailscale/tailscaled.log 2>&1 &
 
 # Bring up Tailscale with specific options
-/userdata/tailscale/tailscale up --advertise-routes=${NET_LOCAl} --snat-subnet-routes=false --accept-routes
+/userdata/tailscale/tailscale up --snat-subnet-routes=false --accept-routes
 EOF
 
 chmod +x /userdata/system/services/tailscale
